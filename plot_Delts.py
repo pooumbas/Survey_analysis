@@ -35,15 +35,21 @@ def get_delts(file):
             device=a['LeInput']['EpRequest']['Device']['OS']
     print(device)
     plot_delts(delts, counts, count, device)
+
 def get_metrics(delts):
+    mean=np.mean(delts)
     STD=np.std(delts)
-    Mean=np.mean(delts)
-    return (STD, Mean)
+    return (mean, STD)
+    
+    
 def plot_delts(delts, counts, count, device):
     metrics=get_metrics(delts)
-    plt.scatter(counts, delts)
-    # plt.legend('Stadard Dev: {}, Mean : {}' .format(metrics[0], metrics[1])
+    STD=str(metrics[1])[:4]
+    plt.scatter(counts, delts, label='Mean: {}, STDV: {}, N: {}'.format(metrics[0], STD, count))
+    plt.xlabel('Count')
+    plt.ylabel('EP Delta')
+    plt.title(device)
+    plt.legend()
     plt.show()
-    
     
     
