@@ -1,18 +1,18 @@
 import os
 import time as tm
 import shutil
-import plots as sp
+import Dev_plot as sp
 
 homedir = os.path.expanduser("~")
-path=('{}/desktop/new_surveys/'.format(homedir))
+path=('{}/Survey_analysis/Data/'.format(homedir))
 time=tm.time()
 def get_files(time):
     epsilon=10000
-    os.chdir('{}/downloads'.format(homedir))
+    os.chdir('{}/Downloads'.format(homedir))
     surveys=[]
     size=input('Input Survey Count: ')
     while True:
-        os.chdir('{}/downloads'.format(homedir))
+        os.chdir('{}/Downloads'.format(homedir))
         dirs=os.listdir()
         for ii in dirs:
             file_name, file_extension= os.path.splitext(ii)
@@ -28,25 +28,14 @@ def get_files(time):
                 break
         tm.sleep(1)
 def move_files(surveys, path=path):
-      os.chdir('{}/downloads'.format(homedir))
+      os.chdir('{}/Downloads'.format(homedir))
       temp=path
       print('Moving{}'.format(surveys))
       print('Current Path: {}' .format(path))
-      new_path=input('Move Surveys to a New Path? y/n: ')
-      if new_path=='y':
-          path=new_dir()+"/"
-          print(path)
-      else:
-          path=input('Enter Path or Type: current: ')
-          path=path.strip(" ")
-      if path=='current':
-          path=temp
-      else:
-          path=path+'/'
       for ii in surveys:
-          print(ii)
-          os.rename(ii, path+ ii)
-      sp.get_files(path, surveys) 
+          print(path+ii)
+          os.rename(ii, path + ii)
+      sp.get_files(temp, surveys)
 def new_dir():
     new_path=input('Enter a New Path')
     new_path=new_path.strip(" ")

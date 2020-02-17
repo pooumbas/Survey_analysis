@@ -40,8 +40,7 @@ def get_metrics(delts):
     mean=np.mean(delts)
     STD=np.std(delts)
     return (mean, STD)
-    
-    
+
 def plot_delts(delts, counts, count, device):
     metrics=get_metrics(delts)
     STD=str(metrics[1])[:4]

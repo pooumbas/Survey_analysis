@@ -94,10 +94,6 @@ def get_xy(file,num):
 def get_sensor_xy(file,num):
     x=[]
     y=[]
-    X1,Y1,X2,Y2=0,0,0,0
-    interpolatedX=[]
-    interpolatedY=[]
-    switch=False
     with open (file) as r:
         for ii in r:
             a=json.loads(ii)
