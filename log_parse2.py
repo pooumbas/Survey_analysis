@@ -1,7 +1,7 @@
 file='mist_sdkmist_sdk_logs.log'
 
 data={"add-sensor":[], "send return":[], "basic":[],"send":[],"dr":[],}
-
+last = []
 
 def make_list(ii):
     if 'return' in ii:
@@ -12,6 +12,7 @@ def make_list(ii):
     return listo
 
 
+
 def initiate():
     with open (file) as logs:
         for ii in logs:
@@ -19,31 +20,30 @@ def initiate():
                 listo=make_list(ii)
                 brute_list(listo)
 
+
+
 def brute_list(listo):
-    last=0
     for ii in listo:
         for key in data:
             if ii==key:
-                decimal = get_decimal(listo, ii)
-                if ii=='basic:':
-                    last=0
-                    value=decimal
-                    last=value
+                decimal = (get_decimal(listo, ii))*10000
+                decimal=int(decimal)
+                if len(last)==0:
+                    last.append(decimal)
                 else:
-                    value = decimal - last
-                    last = decimal
-                append_dict(value, key)
+                    if ii=='basic:':
+                        value=(decimal)
+                        last.append(value)
+                    else:
+                        index = len(last)-1
+                        value = (decimal - last[index])
+                        last.append(value)
+                    append_dict(value, key)
                 break
-            print(last)
+
+
 def append_dict(value, key):
     data[key].append(value)
-
-def adding_frame(ii, decimal):
-    if ii=='basic':
-        last=0
-    else:
-        last=decimal
-    return last
 
 
 def get_decimal(listo,ii):
@@ -53,9 +53,11 @@ def get_decimal(listo,ii):
     decimal=float(decimal[:decimal_dex])
     return decimal
 
+
 if __name__=="__main__":
     initiate()
-    print(data['dr'])
+    print(data)
+    print(last)
 
 
 
