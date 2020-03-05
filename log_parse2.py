@@ -26,20 +26,23 @@ def brute_list(listo):
     for ii in listo:
         for key in data:
             if ii==key:
-                decimal = (get_decimal(listo, ii))*10000
-                decimal=int(decimal)
-                if len(last)==0:
-                    last.append(decimal)
-                else:
-                    if ii=='basic:':
-                        value=(decimal)
-                        last.append(value)
-                    else:
-                        index = len(last)-1
-                        value = (decimal - last[index])
-                        last.append(value)
-                    append_dict(value, key)
+                decimal = (get_decimal(listo, ii))
+                sort_data(decimal,ii,key)
                 break
+
+def sort_data(decimal,ii,key):
+    if len(last)==0:
+        last.append(decimal)
+    else:
+        if ii=='basic':
+            value=(decimal)
+            last.append(decimal)
+        else:
+            index = len(last)-1
+            value = (decimal - last[index])
+            last.append(decimal)
+        append_dict(value, key)
+
 
 
 def append_dict(value, key):
@@ -57,7 +60,7 @@ def get_decimal(listo,ii):
 if __name__=="__main__":
     initiate()
     print(data)
-    print(last)
+
 
 
 
