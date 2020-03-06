@@ -1,3 +1,5 @@
+import pickle, os 
+
 file='mist_sdkmist_sdk_logs.log'
 
 data={"add-sensor":[], "send return":[], "basic":[],"send":[],"dr":[],}
@@ -18,6 +20,7 @@ def make_list(ii):
 def get_data():
     initiate()
     find_max()
+    serialize()
     print(maxes)
     
 
@@ -52,6 +55,13 @@ def sort_data(decimal,ii,key):
             last.append(decimal)
         append_dict(value, key)
 
+
+def serialize():
+    try:
+        with open('delay.pydata', 'wb') as SDK_delays:
+            pickle.dump(data, SDK_delays)
+    except:
+        print('\n Sorry Loser, Try Using SUDO')
 
 
 def append_dict(value, key):
