@@ -1,6 +1,6 @@
-boto3==1.9.53
-botocore==1.12.53
-matplotlib==2.2.3
+boto3
+botocore
+matplotlib
 pandas
 seaborn
 
